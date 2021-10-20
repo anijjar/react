@@ -9,7 +9,21 @@ module.exports = {
    maxEntrypointSize: 512000,
    maxAssetSize: 512000
 },
+optimization: {
+  runtimeChunk: 'single',
+  moduleIds: 'deterministic',
+  splitChunks: {
+      cacheGroups: {
+          vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'all',
+          },
+      },
+  },
+},
   output: {
+    filename: '[name].[contenthash].js',
     path:path.resolve(__dirname, "dist"),
   },
   module: {
